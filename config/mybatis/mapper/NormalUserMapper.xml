@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.template.mapper.NormalUserMapper" >
+     
+     <resultMap id="normalUserResultMap" type="com.template.entity.NormalUser">
+    	<result column="userid" jdbcType="VARCHAR" property="userId" />
+    	<result column="password" jdbcType="VARCHAR" property="password" />
+    </resultMap>
+    
+    <select id="getNormalUserById" resultMap="normalUserResultMap" parameterType="java.util.HashMap">
+        <![CDATA[
+        	select userid,password 
+        	from normaluser 
+        	where userid = #{userId,jdbcType=VARCHAR}
+        	and password = #{password,jdbcType=VARCHAR}
+    	]]>
+    </select>
+</mapper>

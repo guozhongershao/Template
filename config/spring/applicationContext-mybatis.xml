@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- 定义sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 全局配置文件 -->
+		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml" />
+		<!-- 配置dataSource -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置mapper配置文件(包含子目录),如果一个配置文件都没有时，启动会报错 -->
+		<property name="mapperLocations" value="classpath:/mybatis/mapper/**/*.xml" />
+		<!-- 配置别名扫描包，配置后可以在mapper.xml文件中直接使用别名 -->
+		<property name="typeAliasesPackage" value="com.template"></property>
+	</bean>
+
+	<!-- 配置mapper接口的扫描器 -->
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.template.mapper" />
+		<property name="properties">
+			<value>
+				mappers=tk.mybatis.mapper.common.Mapper
+			</value>
+		</property>
+	</bean>
+</beans>

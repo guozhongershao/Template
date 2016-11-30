@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<plugins>
+	<!-- 	注意：mybatis的插件配置是有顺序的，因为mybatis的插件其实就是拦截器，是有执行顺序的
+			在这里，分页助手就必须放在通用Mapper的前面 -->
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<property name="dialect" value="oracle" />
+			<!-- 该参数默认为false -->
+			<!-- 设置为true时，使用RowBounds分页会进行count查询 -->
+			<property name="rowBoundsWithCount" value="true" />
+		</plugin>
+
+	</plugins> 
+
+</configuration>
