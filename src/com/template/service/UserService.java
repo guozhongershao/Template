@@ -8,26 +8,26 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.template.entity.NormalUser;
-import com.template.mapper.NormalUserMapper;
+import com.template.entity.User;
+import com.template.mapper.UserMapper;
 
-@Service("normalUserService")
-public class NormalUserService extends BaseService<NormalUser>{
+@Service("UserService")
+public class UserService extends BaseService<User>{
 
-	private final static Logger logger = Logger.getLogger(NormalUserService.class);
+	private final static Logger logger = Logger.getLogger(UserService.class);
 	
 	@Autowired
-	private NormalUserMapper normalUserMapper;
+	private UserMapper userMapper;
 	
-	public NormalUser getNormalUserById(String userId, String password){
+	public User getNormalUserById(String userId, String password){
 		try {
-			NormalUser normalUser = new NormalUser();
-			normalUser.setUserId(userId);
-			normalUser.setPassword(password);
+			User user = new User();
+			user.setUserId(userId);
+			user.setPassword(password);
 			Map<String, Object> params = new HashMap<String,Object>();
 			params.put("userId", userId);
 			params.put("password", password);
-			List<NormalUser> normalUserList = normalUserMapper.getNormalUserById(params);
+			List<User> normalUserList = userMapper.getUserById(params);
 			if(normalUserList.isEmpty()){
 				return null;
 			}else {

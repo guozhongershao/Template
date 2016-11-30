@@ -11,11 +11,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.template.entity.NormalUser;
+import com.template.entity.User;
 import com.template.entity.Staff;
 import com.template.common.TemplateConstants;
 import com.template.common.util.BeanFactoryUtil;
-import com.template.service.NormalUserService;
+import com.template.service.UserService;
 import com.template.service.StaffService;
 
 import sun.util.logging.resources.logging;
@@ -47,10 +47,10 @@ public class SecFilter implements Filter {
 			
 			if(userId != null && password != null) {
 				try {
-					NormalUserService normalUserService = (NormalUserService)BeanFactoryUtil.getBean("normalUserService");
-					NormalUser normalUser = normalUserService.getNormalUserById(userId, password);
-					if(normalUser!=null) {
-						request.getSession().setAttribute(TemplateConstants.SESSION_USER_ATTRIBUTE_ID, normalUser);
+					UserService UserService = (UserService)BeanFactoryUtil.getBean("UserService");
+					User user = UserService.getNormalUserById(userId, password);
+					if(user!=null) {
+						request.getSession().setAttribute(TemplateConstants.SESSION_USER_ATTRIBUTE_ID, user);
 						response.sendRedirect(request.getContextPath() + "/pages/index.html");
 						return;
 					} else {

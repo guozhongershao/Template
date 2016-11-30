@@ -2,7 +2,14 @@ package com.template.entity;
 
 import java.io.Serializable;
 
-public class NormalUser implements Serializable{
+import javax.persistence.Table;
+
+/** 
+ * @author MUSIC
+ *
+ */
+@Table(name="user")
+public class User implements Serializable{
 	/**
 	 * 
 	 */

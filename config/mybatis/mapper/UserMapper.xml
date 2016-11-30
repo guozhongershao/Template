@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.template.mapper.NormalUserMapper" >
+<mapper namespace="com.template.mapper.UserMapper" >
      
-     <resultMap id="normalUserResultMap" type="com.template.entity.NormalUser">
+     <resultMap id="UserResultMap" type="com.template.entity.User">
     	<result column="userid" jdbcType="VARCHAR" property="userId" />
     	<result column="password" jdbcType="VARCHAR" property="password" />
     </resultMap>
     
-    <select id="getNormalUserById" resultMap="normalUserResultMap" parameterType="java.util.HashMap">
+    <select id="getUserById" resultMap="UserResultMap" parameterType="java.util.HashMap">
         <![CDATA[
         	select userid,password 
-        	from normaluser 
+        	from user 
         	where userid = #{userId,jdbcType=VARCHAR}
         	and password = #{password,jdbcType=VARCHAR}
     	]]>
